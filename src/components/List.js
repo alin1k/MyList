@@ -1,9 +1,10 @@
 import { useState } from "react";
 import AddItem from "./AddItem";
-import { Stack, Checkbox, Card, CardBody, CardHeader, Editable, EditableInput, EditablePreview } from "@chakra-ui/react";
+import { Stack, Checkbox, Card, CardBody, CardHeader, Editable, EditableInput, EditablePreview, Divider, Box, Button, HStack } from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 function List(){
-  const [itemsArray, setItemsArray] = useState([]);
+  const [itemsArray, setItemsArray] = useState(["item1", "item2", "item3"]);
 
   return(
     <Card>
@@ -17,7 +18,17 @@ function List(){
       <CardBody display="flex" flexDirection="column" justifyContent="space-between">
         <Stack mb={4} spacing={[1]} direction={["column"]}>
           {itemsArray.map((val, index)=> (
-            <Checkbox key={index}>{val}</Checkbox>
+            <Box>
+              <HStack justify="space-between">
+                <Checkbox colorScheme="teal" key={index}>{val}</Checkbox>
+                <Button mb={1} size="sm" colorScheme="red" variant="ghost" onClick={()=>{
+                  const newArray = [...itemsArray];
+                  newArray.splice(index, 1);
+                  setItemsArray(newArray);
+                }}><DeleteIcon/></Button>
+              </HStack>
+              <Divider/>
+            </Box>
           ))}
         </Stack>
 
