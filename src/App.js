@@ -1,4 +1,5 @@
 import List from "./components/List";
+import ClearLists from "./components/ClearLists";
 import "./App.css"
 import { Box, Button, HStack, Heading, SimpleGrid} from "@chakra-ui/react";
 import { useState } from "react";
@@ -10,7 +11,7 @@ function App() {
     <>
       <HStack mb={4} padding={3} bgColor={"teal.500"} display="flex" justifyContent="space-between">
         <Heading color={"white"}>MyList</Heading>
-        <Button colorScheme="red" onClick={()=>setListArray([])}>Clear Lists</Button>
+        <ClearLists setListArray={setListArray}/>
       </HStack>
       
       <SimpleGrid columns={4} padding={4} spacing={4}>
