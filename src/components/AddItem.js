@@ -9,6 +9,7 @@ function AddItem({itemsArray, setItemsArray}){
             <Stack spacing={[2]} direction={["row"]}>
                 <Input 
                     size='sm'
+                    borderRadius="xl"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                 />  

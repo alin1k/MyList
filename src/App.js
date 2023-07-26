@@ -3,9 +3,14 @@ import ClearLists from "./components/ClearLists";
 import "./App.css"
 import { Box, Button, HStack, Heading, SimpleGrid} from "@chakra-ui/react";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [listArray , setListArray] = useState([]);
+  
+  async function deleteList(id){
+    setListArray(prevList => prevList.filter((list)=> list.key !== id))
+  }
 
   return (
     <>
@@ -18,7 +23,14 @@ function App() {
         {listArray}
 
         <Box display="flex" justifyContent="center" alignItems="center">
-            <Button onClick={()=>setListArray([...listArray, <List/>])}>+ Add new list</Button>
+            <Button 
+              onClick={()=>{
+                const id = uuidv4();
+                setListArray([...listArray, <List key={id} onDelete={()=>deleteList(id)}/>])
+              }}
+            >
+              + Add new list
+            </Button>
         </Box>
       </SimpleGrid>
     </>

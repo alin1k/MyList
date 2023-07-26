@@ -1,14 +1,35 @@
 import { useState } from "react";
 import AddItem from "./AddItem";
-import { Stack, Checkbox, Card, CardBody, CardHeader, Editable, EditableInput, EditablePreview, Divider, Box, Button, HStack, Text } from "@chakra-ui/react";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { 
+  Stack, 
+  Checkbox, 
+  Card, 
+  CardBody, 
+  CardHeader, 
+  Editable, 
+  EditableInput, 
+  EditablePreview, 
+  Divider, 
+  Box,
+  HStack, 
+  Text, 
+  IconButton, 
+} from "@chakra-ui/react";
+import { DeleteIcon, CloseIcon } from "@chakra-ui/icons";
 
-function List(){
+function List({onDelete}){
   const [itemsArray, setItemsArray] = useState(["item1", "item2", "item3"]);
   const [editableValue, setEditableValue] = useState("Edit list name");
 
   return(
-    <Card>
+    <Card borderRadius="xl">
+      <IconButton 
+        size="xs" variant="ghost" colorScheme="red" 
+        position="absolute" top={1} right={1} 
+        icon={<CloseIcon/>}
+        onClick={onDelete}
+      />
+
       <CardHeader pb={1}>
         <Editable 
           fontSize='xl'
@@ -27,17 +48,17 @@ function List(){
       </CardHeader>
 
       <CardBody display="flex" flexDirection="column" justifyContent="space-between">
-        <Stack mb={4} spacing={[1]} direction={["column"]}>
+        <Stack mb={4} spacing={1} direction="column">
           {itemsArray.length ? <></> : <Text>List is empty! Add some items</Text>}
           {itemsArray.map((val, index)=> (
-            <Box>
+            <Box key={index}>
               <HStack justify="space-between">
                 <Checkbox colorScheme="teal" key={index}>{val}</Checkbox>
-                <Button mb={1} size="sm" colorScheme="red" variant="ghost" onClick={()=>{
+                <IconButton icon={<DeleteIcon/>} mb={1} size="sm" colorScheme="red" variant="ghost" onClick={()=>{
                   const newArray = [...itemsArray];
                   newArray.splice(index, 1);
                   setItemsArray(newArray);
-                }}><DeleteIcon/></Button>
+                }}/>
               </HStack>
               <Divider/>
             </Box>
