@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MyList",
+  "name": "MyList - Simple way to manage your to do lists",
   "icons": [
     {
       "src": "favicon.ico",

@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [listArray , setListArray] = useState([]);
-  
+
   async function deleteList(id){
     setListArray(prevList => prevList.filter((list)=> list.key !== id))
   }
@@ -23,7 +23,8 @@ function App() {
         {listArray}
 
         <Box display="flex" justifyContent="center" alignItems="center">
-            <Button 
+            <Button
+              colorScheme="teal"
               onClick={()=>{
                 const id = uuidv4();
                 setListArray([...listArray, <List key={id} onDelete={()=>deleteList(id)}/>])

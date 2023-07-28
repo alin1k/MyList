@@ -18,13 +18,13 @@ import {
 import { DeleteIcon, CloseIcon } from "@chakra-ui/icons";
 
 function List({onDelete}){
-  const [itemsArray, setItemsArray] = useState(["item1", "item2", "item3"]);
+  const [itemsArray, setItemsArray] = useState([]);
   const [editableValue, setEditableValue] = useState("Edit list name");
 
   return(
     <Card borderRadius="xl">
       <IconButton 
-        size="xs" variant="ghost" colorScheme="red" 
+        size="xs" colorScheme="red" borderRadius="xl"
         position="absolute" top={1} right={1} 
         icon={<CloseIcon/>}
         onClick={onDelete}
@@ -54,7 +54,7 @@ function List({onDelete}){
             <Box key={index}>
               <HStack justify="space-between">
                 <Checkbox colorScheme="teal" key={index}>{val}</Checkbox>
-                <IconButton icon={<DeleteIcon/>} mb={1} size="sm" colorScheme="red" variant="ghost" onClick={()=>{
+                <IconButton icon={<DeleteIcon/>} mb={1} size="sm" colorScheme="red" borderRadius="xl" variant="ghost" onClick={()=>{
                   const newArray = [...itemsArray];
                   newArray.splice(index, 1);
                   setItemsArray(newArray);
