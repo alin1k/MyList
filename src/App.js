@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <HStack mb={4} padding={3} bgColor={"teal.500"} display="flex" justifyContent="space-between">
+      <HStack mb={4} padding={3} bgColor={"teal.300"} display="flex" justifyContent="space-between">
         <Heading color={"white"}>MyList</Heading>
         <ClearLists setListArray={setListArray}/>
       </HStack>
@@ -27,7 +27,7 @@ function App() {
               colorScheme="teal"
               onClick={()=>{
                 const id = uuidv4();
-                setListArray([...listArray, <List key={id} onDelete={()=>deleteList(id)}/>])
+                setListArray(prevList => [...prevList, <List key={id} onDelete={()=>deleteList(id)}/>])
               }}
             >
               + Add new list
